@@ -1,0 +1,23 @@
+group:
+  - climabench
+task: sci_dcc
+dataset_path: "/nas/data/LLM/llm-evaluation-datasets/tasks/climabench/SciDCC/"
+#"/nas/data/LLM/llm-evaluation-datasets/tasks/climabench/SciDCC/" 
+# dataset_kwargs: {data_files:{"train": "train_qa.csv","test": "test_qa.csv", "validation": "val_qa.csv"}}
+output_type: multiple_choice
+training_split: train
+validation_split: validation
+test_split: test
+fewshot_split: validation
+doc_to_target: "{{Category}}"
+doc_to_text: "Assign a topic to the following news article given its title, summary and body. \nTitle: {{Title}}\nSummary: {{Summary}}\nBody: {{Body}}\n\nTopic:"
+doc_to_choice: "{{['Ozone Holes','Pollution','Hurricanes Cyclones','Earthquakes','Climate','Environment','Geography','Geology','Global Warming','Weather','Agriculture & Food', 'Animals', 'Biology', 'Endangered Animals','Extinction','New Species','Zoology','Biotechnology','Genetically Modified', 'Microbes']}}"
+# process_docs: !function utils.filter_multi
+should_decontaminate: false
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
