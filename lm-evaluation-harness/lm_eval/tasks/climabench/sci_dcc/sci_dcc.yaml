@@ -1,7 +1,7 @@
 group:
   - climabench
 task: sci_dcc
-dataset_path: "/nas/data/LLM/llm-evaluation-datasets/tasks/climabench/SciDCC/"
+dataset_path: "/home/rjalota/climabench_data/all_data/SciDCC/"
 #"/nas/data/LLM/llm-evaluation-datasets/tasks/climabench/SciDCC/" 
 # dataset_kwargs: {data_files:{"train": "train_qa.csv","test": "test_qa.csv", "validation": "val_qa.csv"}}
 output_type: multiple_choice

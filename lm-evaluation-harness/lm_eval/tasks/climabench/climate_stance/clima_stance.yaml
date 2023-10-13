@@ -1,7 +1,7 @@
 group:
   - climabench
 task: climate_stance
-dataset_path: /nas/data/LLM/llm-evaluation-datasets/tasks/climabench/ClimateStance
+dataset_path: /home/rjalota/climabench_data/all_data/ClimateStance
 output_type: multiple_choice
 training_split: test
 validation_split: validation

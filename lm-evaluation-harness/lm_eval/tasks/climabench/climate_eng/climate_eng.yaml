@@ -1,7 +1,7 @@
 group:
   - climabench
 task: climate_eng
-dataset_path: /nas/data/LLM/llm-evaluation-datasets/tasks/climabench/ClimateEng
+dataset_path: /home/rjalota/climabench_data/all_data/ClimateEng
 output_type: multiple_choice
 training_split: train
 validation_split: validation

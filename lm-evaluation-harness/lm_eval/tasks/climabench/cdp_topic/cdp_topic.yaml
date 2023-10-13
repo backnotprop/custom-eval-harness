@@ -1,7 +1,7 @@
 group:
   - climabench
 task: cdp_topic
-dataset_path: "/nas/models/nlu/anasir/climabench/climabench_data/all_data/CDP/Cities/Cities Responses"
+dataset_path: "/home/rjalota/climabench_data/all_data/CDP/Cities/Cities Responses"
 dataset_kwargs: {"data_files":{"test": "test.csv", "validation": "val.csv"}}
 output_type: multiple_choice
 training_split: validation
@@ -12,7 +12,7 @@ doc_to_text: "Classify the following text in on of the following categories.\nCa
 doc_to_target: "{{Label}}"
 doc_to_choice: "{{['Waste', 'Climate Hazards', 'Food', 'Transport', 'Strategy', 'Governance and Data Management', 'Energy', 'Buildings', 'Opportunities', 'Emissions', 'Water', 'Adaptation']}}"
 should_decontaminate: false
-process_docs: !function utils.select_first_300
+process_docs: !function utils.select_first_1100
 metric_list:
   - metric: acc
     aggregation: mean
