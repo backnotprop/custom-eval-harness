@@ -1,6 +1,6 @@
 group:
   - climabench
-task: claim_binary
+task: claim_multi
 dataset_path: '/home/rjalota/climabench_data/multi/'
 output_type: multiple_choice
 training_split: test
