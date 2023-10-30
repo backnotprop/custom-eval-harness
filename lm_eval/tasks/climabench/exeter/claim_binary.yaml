@@ -1,0 +1,24 @@
+group:
+  - climabench
+task: claim_binary
+dataset_path: '/home/rjalota/climabench_data/binary/'
+output_type: multiple_choice
+training_split: test
+validation_split: validation
+test_split: test
+fewshot_split: validation
+doc_to_text: "This is a misinformation/disinformation classification task. Your task is that of telling if the given text conveys correct or false information. Your reply should be: 1: it is correct information; 0: it is false. Your reply should contain only the corresponding number and nothing else (i.e., 0 or 1).\nTEXT: {{text}} ANSWER: "
+doc_to_target: "{{bin_label}}"
+doc_to_choice: "{{['1', '0']}}"
+# process_results: !function utils.process_results
+should_decontaminate: false
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+  - metric: !function utils.f1
+    aggregation: !function utils.agg_f1
+    higher_is_better: true

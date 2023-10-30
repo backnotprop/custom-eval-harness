@@ -1,0 +1,24 @@
+group:
+  - climabench
+task: claim_binary
+dataset_path: '/home/rjalota/climabench_data/multi/'
+output_type: multiple_choice
+training_split: test
+validation_split: validation
+test_split: test
+fewshot_split: validation
+doc_to_text: "This is a claim classification task. Your task is that of telling to which category the given claim belongs to. Your reply should be one of the following: 1: Global warming is not happening; 2: Human greenhouse gases are not causing climate change; 3: Climate impacts/global warming is beneficial/not bad; 4: Climate solutions won't work / aren't necessary; 5: Climate movement/science is unreliable. Your reply should contain only the corresponding number and nothing else (i.e., a number between 1-5).\nTEXT: {{text}} ANSWER: "
+doc_to_target: "{{claim_labels}}"
+doc_to_choice: "{{['1', '2', '3', '4', '5']}}"
+# process_results: !function utils.process_results
+should_decontaminate: false
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+  - metric: acc_norm
+    aggregation: mean
+    higher_is_better: true
+  - metric: !function utils.multi_f1
+    aggregation: !function utils.agg_f1
+    higher_is_better: true
