@@ -23,7 +23,8 @@ def get_claim_label(row):
 
 def get_claim(row):
     if '0_0' not in row:
-        return row[0]
+        # print(int(row[0])-1)
+        return int(row[0])-1
     return None
 
 def parse_args():
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     args = parse_args()
     for filename in os.listdir(args.path):
         print(filename)
-        f = os.path.join(path, filename)
+        f = os.path.join(args.path, filename)
         df = pd.read_csv(f, header=0)
         # print(df.head())
         df['bin_label'] = df.apply(lambda row: 0 if '0_0' in row.claim else 1, axis = 1)
@@ -48,6 +49,8 @@ if __name__ == '__main__':
         print(len(claim_df))
         claim_df = claim_df.dropna()
         print(len(claim_df))
+        claim_df['claim_labels'] = claim_df['claim_labels'].astype(int)
+        print(claim_df.claim_labels.value_counts())
         Path(f"{args.out}/multi/").mkdir(parents=True, exist_ok=True)
         Path(f"{args.out}/binary/").mkdir(parents=True, exist_ok=True)
         claim_df.to_csv(f"{args.out}/multi/{filename}", index=False)

@@ -26,7 +26,7 @@ def multi_f1(predictions, references):  # This is a passthrough function
     _reference = references[0]
     print(f"_prediction: {_prediction}")
     print(f"_reference: {_reference}")
-    string_label = ['1', '2', '3', '4', '5']
+    string_label = ['0', '1', '2', '3', '4']
     reference = string_label.index(_reference)
     prediction = (
         string_label.index(_prediction)
@@ -43,6 +43,15 @@ def agg_f1(items):
 
     return sklearn.metrics.f1_score(references, predictions, average='macro')
 
+
+def relabel_labels(example):
+    example["label"]= example["claim_labels"]-1
+    return example
+
+def process_labels(dataset: datasets.Dataset) -> datasets.Dataset:
+    dataset = dataset.map(relabel_labels, batched=False)
+    print(dataset)
+    return dataset
 
 # def convert_to_int(example):
 #     example["label"]= 1 if example["at_labels"]==1.0 else 0
