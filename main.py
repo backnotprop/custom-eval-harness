@@ -5,6 +5,7 @@ import fnmatch
 import jsonlines
 import argparse
 import logging
+import numpy as np
 from pathlib import Path
 
 from lm_eval import evaluator, utils
@@ -15,7 +16,17 @@ from lm_eval.benchmarks import include_benchmarks
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-
+class NumpyEncoder(json.JSONEncoder):
+    """ Special json encoder for numpy types """
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return json.JSONEncoder.default(self, obj)
+    
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument("--model", required=True, help="Name of model e.g. `hf`")
@@ -201,8 +212,15 @@ def main() -> None:
                     )
                     filename = path.joinpath(f"{output_name}.jsonl")
 
-                    with jsonlines.open(filename, "w") as f:
-                        f.write_all(samples[task_name])
+                    dumped = json.dumps(samples[task_name], cls=NumpyEncoder)
+
+                    with open(filename, "w") as f:
+                        json.dump(dumped, f)
+
+                    # with jsonlines.open(filename, "w", compact=True) as f:
+                    #     # print(task_name)
+                    #     print(samples[task_name])
+                    #     # f.write((samples[task_name]))
 
         print(
             f"{args.model} ({args.model_args}), limit: {args.limit}, num_fewshot: {args.num_fewshot}, "

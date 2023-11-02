@@ -1,6 +1,6 @@
 group:
   - climabench
-task: sci_dcc
+task: sci_dcc3
 dataset_path: "/home/rjalota/climabench_data/all_data/SciDCC/"
 #"/nas/data/LLM/llm-evaluation-datasets/tasks/climabench/SciDCC/" 
 # dataset_kwargs: {data_files:{"train": "train_qa.csv","test": "test_qa.csv", "validation": "val_qa.csv"}}
@@ -10,7 +10,7 @@ validation_split: validation
 test_split: test
 fewshot_split: validation
 doc_to_target: "{{Category}}"
-doc_to_text: "Assign a topic to the following news article given its title, summary and body. \nTitle: {{Title}}\nSummary: {{Summary}}\nBody: {{Body}}\n\nTopic:"
+doc_to_text: "\nTitle: {{Title}}\nSummary: {{Summary}}\nBody: {{Body}}\nThe title, summary and body of a news article are given above. Assign the news article to one of the following topics:\nTopics:'Ozone Holes','Pollution','Hurricanes Cyclones','Earthquakes','Climate','Environment','Geography','Geology','Global Warming','Weather','Agriculture & Food', 'Animals', 'Biology', 'Endangered Animals','Extinction','New Species','Zoology','Biotechnology','Genetically Modified', 'Microbes'\nTopic:"
 doc_to_choice: "{{['Ozone Holes','Pollution','Hurricanes Cyclones','Earthquakes','Climate','Environment','Geography','Geology','Global Warming','Weather','Agriculture & Food', 'Animals', 'Biology', 'Endangered Animals','Extinction','New Species','Zoology','Biotechnology','Genetically Modified', 'Microbes']}}"
 # process_docs: !function utils.filter_multi
 should_decontaminate: false
