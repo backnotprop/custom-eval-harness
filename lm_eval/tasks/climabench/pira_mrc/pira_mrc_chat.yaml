@@ -1,0 +1,45 @@
+group:
+  - climabench
+task: pira_mrc_chat
+dataset_path: 'paulopirozelli/pira'
+output_type: greedy_until
+training_split: test
+validation_split: validation
+test_split: test
+fewshot_split: validation
+doc_to_text: "<|im_start|>system
+You're a helpful assistant supporting users with their questions on climate change.<|im_end|>
+<|im_start|>user
+Answer the question in AS FEW WORDS AS POSSIBLE and based on the context below.\n\nContext: {{abstract}}\n\n--\n\nQuestion: {{question_en_origin}}\nAnswer: <|im_end|>
+<|im_start|>assistant"
+doc_to_target: "{{answer_en_origin}}"
+# doc_to_choice: "{{['0.0', '1.0']}}"
+# process_results: !function utils.process_results
+# process_docs: !function utils.prepate_AT_data
+should_decontaminate: false
+# metric_list:
+generation_kwargs:
+  until:
+    - "\n"
+metric_list:
+  - metric: !function utils.exact
+    aggregation: mean
+    higher_is_better: true
+  - metric: !function utils.f1
+    aggregation: mean
+    higher_is_better: true
+  # - metric: acc
+  #   aggregation: mean
+  #   higher_is_better: true
+  # - metric: acc_norm
+  #   aggregation: mean
+  #   higher_is_better: true
+  # # - metric: exact_match
+  # #   aggregation: mean
+  # #   higher_is_better: true
+  # #   ignore_case: true
+  # #   ignore_punctuation: true
+  # # - metric: !function utils.evaluate
+  # #   # aggregation: mean
+  # #   aggregation: !function utils.agg_f1
+  # #   higher_is_better: true
