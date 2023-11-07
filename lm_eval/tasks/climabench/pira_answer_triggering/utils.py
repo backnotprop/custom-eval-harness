@@ -43,10 +43,10 @@ def prepate_AT_data(dataset: datasets.Dataset) -> datasets.Dataset:
     # print(at_data)
     data = at_data.filter(lambda example: example["at_labels"] is not None)
     # print(data)
-    data = data.map(convert_to_int, batched=False)
-    print(data)
-    print(f"DATA after applying filter: {data['label'][:5]}")
-    return data
+    return data.map(convert_to_int, batched=False)
+    # print(data)
+    # print(f"DATA after applying filter: {data['label'][:5]}")
+    # return data
 
 
     # return dataset.filter(lambda example: example["claim_label"] in [0,1])
