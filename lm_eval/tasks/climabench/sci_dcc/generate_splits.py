@@ -2,9 +2,9 @@ import pandas as pd
 import argparse
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='run binary classifer')
-    parser.add_argument("--path", default="/nas/data/LLM/llm-evaluation-datasets/tasks/climabench", help="path to climavench data. ") 
-    parser.add_argument("--out", default="/nas/data/LLM/llm-evaluation-datasets//tasks/climabench", help="output directory path. usually same as path")  
+    parser = argparse.ArgumentParser(description='run splitter')
+    parser.add_argument("--path", default="/nas/data/LLM/llm-evaluation-datasets/tasks/climabench", help="path to climabench data. ") 
+    parser.add_argument("--out", default="/nas/data/LLM/llm-evaluation-datasets//tasks/climabench", help="output directory path, usually same as path")  
     return parser.parse_args()
     
 if __name__ == "__main__":
