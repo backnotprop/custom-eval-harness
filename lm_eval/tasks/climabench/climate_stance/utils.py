@@ -3,10 +3,6 @@ import numpy as np
 import logging
 from sklearn.metrics import f1_score
 
-def filter_multi(dataset: datasets.Dataset) -> datasets.Dataset:
-    # Only supports and refutes
-    return dataset.filter(lambda example: example["label"] in [0,1,2,3,4])
-
 def f1(predictions, references):  # This is a passthrough function
     return (predictions[0], references[0])
     # _prediction = predictions[0]

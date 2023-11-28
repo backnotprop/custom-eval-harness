@@ -5,18 +5,19 @@ import sklearn.metrics
 cols_to_remove = ['id_qa', 'corpus', 'question_pt_origin', 'question_en_paraphase', 'question_pt_paraphase', 'answer_en_origin', 'answer_pt_origin', 'answer_en_validate', 'answer_pt_validate', 'eid_article_scopus', 'question_generic', 'answer_in_text', 'answer_difficulty', 'question_meaningful', 'answer_equivalent', 'question_type', 'abstract_translated_pt', 'pt_question_translated_to_en']
 
 def f1(predictions, references):  # This is a passthrough function
+    return (predictions[0], references[0])
 
-    _prediction = predictions[0]
-    _reference = references[0]
-    string_label = ['A', 'B', 'C', 'D', 'E']
-    reference = string_label.index(_reference)
-    prediction = (
-        string_label.index(_prediction)
-        if _prediction in string_label
-        else not bool(reference)
-    )
+    # _prediction = predictions[0]
+    # _reference = references[0]
+    # string_label = ['A', 'B', 'C', 'D', 'E']
+    # reference = string_label.index(_reference)
+    # prediction = (
+    #     string_label.index(_prediction)
+    #     if _prediction in string_label
+    #     else not bool(reference)
+    # )
 
-    return (prediction, reference)
+    # return (prediction, reference)
 
 def agg_f1(items):
 

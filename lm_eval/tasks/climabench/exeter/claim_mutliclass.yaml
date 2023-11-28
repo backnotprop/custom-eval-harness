@@ -1,7 +1,7 @@
 group:
   - climabench
 task: claim_multi
-dataset_path: '/home/rjalota/climabench_data/multi/'
+dataset_path: '/media/16TBNVME/data/eval/exeter/multi/'
 output_type: multiple_choice
 training_split: test
 validation_split: validation

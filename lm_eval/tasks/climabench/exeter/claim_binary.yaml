@@ -1,7 +1,7 @@
 group:
   - climabench
 task: claim_binary
-dataset_path: '/home/rjalota/climabench_data/binary/'
+dataset_path: '/media/16TBNVME/data/eval/exeter/binary/'
 output_type: multiple_choice
 training_split: test
 validation_split: validation

@@ -1,7 +1,7 @@
 group:
   - climabench
 task: climate_stance
-dataset_path: /home/rjalota/climabench_data/all_data/ClimateStance
+dataset_path: /media/16TBNVME/data/eval/climabench_data/all_data/ClimateStance
 output_type: multiple_choice
 training_split: test
 validation_split: validation
@@ -17,4 +17,7 @@ metric_list:
     higher_is_better: true
   - metric: acc_norm
     aggregation: mean
+    higher_is_better: true
+  - metric: !function utils.f1
+    aggregation: !function utils.agg_f1
     higher_is_better: true
